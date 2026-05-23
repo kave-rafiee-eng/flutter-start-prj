@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Widgets/expenses_list.dart';
-import 'package:flutter_application_1/Widgets/new_expense.dart';
-import 'package:flutter_application_1/models/expense.dart';
+import 'package:flutter_application_1/expense/Widgets/expenses_list.dart';
+import 'package:flutter_application_1/expense/Widgets/new_expense.dart';
+import 'package:flutter_application_1/expense/models/expense.dart';
 
 class Expenses extends StatefulWidget {
   const Expenses({super.key});
