@@ -16,7 +16,7 @@ final DUMMY_CATEGORIES = [
   Category(id: 'c10', title: 'Summer', color: Colors.teal),
 ];
 
-const DUMMY_MEALS = const [
+const DUMMY_MEALS = [
   Meal(
     id: 'm1',
     categories: ['c1', 'c2'],
