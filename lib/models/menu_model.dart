@@ -195,7 +195,7 @@ class ParanetIdLableType {
 class MenuType {
   final String id;
   final List<ParanetIdLableType> parentId;
-  final String? lable; // طبق TypeScript می‌تواند undefined/null باشد
+  final String? lable;
   final TypeMenuEnum type;
   final MenuDataType data;
   final DescriptionType description;

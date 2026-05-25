@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/meals/screens/tabs.dart';
+import 'package:flutter_application_1/testWidget.dart';
 // import 'package:flutter_application_1/quiz/Quiz.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -22,7 +23,14 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(theme: theme, home: TabsScreen());
+    // return MaterialApp(theme: theme, home: TabsScreen());
+    return MaterialApp(
+      theme: theme,
+      home: Scaffold(
+        appBar: AppBar(title: Text('test Json')),
+        body: MenuPage(),
+      ),
+    );
   }
 }
 
