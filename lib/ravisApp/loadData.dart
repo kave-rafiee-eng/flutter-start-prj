@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/homeMenu.dart';
-import 'package:flutter_application_1/menu_service.dart';
-import 'package:flutter_application_1/models/menu_model.dart';
+import 'package:flutter_application_1/ravisApp/homeMenu.dart';
+import 'package:flutter_application_1/ravisApp/service/menu_service.dart';
+import 'package:flutter_application_1/ravisApp/models/menu_model.dart';
 
 class MenuPage extends StatelessWidget {
   final MenuService _service = MenuService();

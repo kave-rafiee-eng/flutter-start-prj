@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:flutter_application_1/models/menu_model.dart';
+import '../models/menu_model.dart';
 
 class MenuService {
   Future<List<MenuType>> loadMenus() async {
