@@ -50,6 +50,19 @@ class HomeDrawer extends StatelessWidget {
               // onSelectScreen('meals');
             },
           ),
+          ListTile(
+            leading: Icon(Icons.menu, size: 24),
+            title: Text(
+              'Advance Menus',
+              style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                color: Theme.of(context).colorScheme.primary,
+                fontSize: 24,
+              ),
+            ),
+            onTap: () {
+              // TODO: Implement the logic to navigate to the advance menus screen.
+            },
+          ),
         ],
       ),
     );

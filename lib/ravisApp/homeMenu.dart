@@ -15,7 +15,7 @@ class HomeMenu extends StatefulWidget {
 }
 
 class _HomeMenuState extends State<HomeMenu> {
-  String _activeId = '14';
+  String _activeId = '0';
 
   List<ParanetIdLableType> navList = [
     ParanetIdLableType(id: '0', label: 'main'),
