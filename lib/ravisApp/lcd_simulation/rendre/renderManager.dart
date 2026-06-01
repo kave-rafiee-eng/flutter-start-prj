@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/ravisApp/lcd_simulation/rendre/render_multiGroup.dart';
+import 'package:flutter_application_1/ravisApp/lcd_simulation/rendre/render_multiSelect.dart';
 import 'package:flutter_application_1/ravisApp/lcd_simulation/rendre/render_setOneSelect.dart';
 import 'package:flutter_application_1/ravisApp/lcd_simulation/rendre/render_setOneParameter.dart';
 import 'package:flutter_application_1/ravisApp/lcd_simulation/rendre/render_sunMenu.dart';
@@ -26,7 +28,7 @@ List<ParanetIdLableType> findParents(List<MenuType> allMenus, MenuType menu) {
 }
 
 class _RendermanagerState extends State<Rendermanager> {
-  String _activeId = '0';
+  String _activeId = '5';
 
   List<ParanetIdLableType> navList = [
     ParanetIdLableType(id: '0', label: 'main'),
@@ -81,7 +83,27 @@ class _RendermanagerState extends State<Rendermanager> {
       );
     }
 
-    if (menuSelected.type == TypeMenuEnum.settingMultySelect) {}
+    if (menuSelected.type == TypeMenuEnum.settingMultySelect &&
+        menuSelected.data.settingMultySelect != null) {
+      activeWidget = RenderSettingMultiSelect(
+        inputData: RendererSettingMultiSelectData(
+          onBack: oneBack,
+          item: menuSelected.data.settingMultySelect!,
+          // description: menuSelected.description,
+        ),
+      );
+    }
+
+    if (menuSelected.type == TypeMenuEnum.settingMultyGroup &&
+        menuSelected.data.settingMultyGroup != null) {
+      activeWidget = RenderSettingMultiGroup(
+        inputData: RendererSettingMultiGroupData(
+          onBack: oneBack,
+          items: menuSelected.data.settingMultyGroup!,
+          // description: menuSelected.description,
+        ),
+      );
+    }
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,

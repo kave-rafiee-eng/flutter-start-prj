@@ -77,14 +77,8 @@ class ShowRendered extends StatelessWidget {
                     onStep: onRemove,
                     holdStep: removeHoldStep,
                   ),
-                  SimpleAdjustButton(
-                    icon: Icons.done,
-                    onStep: onDone,
-                  ),
-                  SimpleAdjustButton(
-                    icon: Icons.exit_to_app,
-                    onStep: onBack,
-                  ),
+                  SimpleAdjustButton(icon: Icons.done, onStep: onDone),
+                  SimpleAdjustButton(icon: Icons.exit_to_app, onStep: onBack),
                 ],
               ),
             ),
