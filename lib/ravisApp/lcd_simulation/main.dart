@@ -23,6 +23,8 @@ class MyApp extends StatelessWidget {
 class LoadDataMenu extends StatelessWidget {
   final MenuService _service = MenuService();
 
+  LoadDataMenu({super.key});
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<MenuType>>(

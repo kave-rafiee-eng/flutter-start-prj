@@ -6,6 +6,8 @@ import 'package:flutter_application_1/ravisApp/models/menu_model.dart';
 class MenuPage extends StatelessWidget {
   final MenuService _service = MenuService();
 
+  MenuPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<MenuType>>(

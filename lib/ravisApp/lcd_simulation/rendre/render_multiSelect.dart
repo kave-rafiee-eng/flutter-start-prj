@@ -27,7 +27,7 @@ class RendererSettingMultiSelectData {
 }
 
 void _renderLcd(LcdFunctions lcd, RendererSettingMultiSelectData data) {
-  const MENU_VISIBLE_ITEMS = 3;
+  const menuVisibleItems = 3;
 
   SettingMultySelectType item = data.getItem;
   int totalItems = item.itemLabels.length;
@@ -35,7 +35,7 @@ void _renderLcd(LcdFunctions lcd, RendererSettingMultiSelectData data) {
   if (data.menuIndex == item.itemLabels.length) {
     data.menuIndex = item.itemLabels.length - 1;
   }
-  if (data.menuIndex > (data.menuOffset + MENU_VISIBLE_ITEMS - 1)) {
+  if (data.menuIndex > (data.menuOffset + menuVisibleItems - 1)) {
     data.menuOffset++;
   }
   if (data.menuIndex < data.menuOffset) {
@@ -46,7 +46,7 @@ void _renderLcd(LcdFunctions lcd, RendererSettingMultiSelectData data) {
   lcd.fillRect(0, 13, X_PIXELS, Y_PIXELS, false);
   lcd.drawLine(0, 13, X_PIXELS, 13, true);
 
-  for (int i = 0; i < MENU_VISIBLE_ITEMS && i < totalItems; i++) {
+  for (int i = 0; i < menuVisibleItems && i < totalItems; i++) {
     int y = i * 17 + 19;
     int value = data.values[data.menuOffset + i];
 
@@ -70,7 +70,7 @@ void _renderLcd(LcdFunctions lcd, RendererSettingMultiSelectData data) {
     }
   }
 
-  lcd.drawScrollBar(data.menuOffset, totalItems, MENU_VISIBLE_ITEMS);
+  lcd.drawScrollBar(data.menuOffset, totalItems, menuVisibleItems);
 }
 
 class RenderSettingMultiSelect extends StatefulWidget {

@@ -17,18 +17,18 @@ class Rendermanager extends StatefulWidget {
 
 List<ParanetIdLableType> findParents(List<MenuType> allMenus, MenuType menu) {
   List<ParanetIdLableType> Parents = [];
-  allMenus.forEach((m) {
-    m.parentId.forEach((parentId) {
+  for (var m in allMenus) {
+    for (var parentId in m.parentId) {
       if (parentId.id == menu.id) {
         Parents.add(ParanetIdLableType(id: m.id, label: parentId.label));
       }
-    });
-  });
+    }
+  }
   return Parents;
 }
 
 class _RendermanagerState extends State<Rendermanager> {
-  String _activeId = '5';
+  String _activeId = '0';
 
   List<ParanetIdLableType> navList = [
     ParanetIdLableType(id: '0', label: 'main'),
@@ -36,8 +36,10 @@ class _RendermanagerState extends State<Rendermanager> {
 
   void oneBack() {
     setState(() {
-      navList.removeLast();
-      _activeId = navList[navList.length - 1].id;
+      if (navList.length > 1) {
+        navList.removeLast();
+        _activeId = navList[navList.length - 1].id;
+      }
     });
   }
 

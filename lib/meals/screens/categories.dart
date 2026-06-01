@@ -80,10 +80,10 @@ class _CategoriesScrennState extends State<CategoriesScrenn>
       //   child: child,
       // ),
       builder: (ctx, child) => Padding(
-        child: child,
         padding: EdgeInsetsGeometry.only(
           top: 100 - _animationController.value * 100,
         ),
+        child: child,
       ),
     );
   }

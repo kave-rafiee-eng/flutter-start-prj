@@ -7,6 +7,7 @@ class FastAdjustButton extends StatefulWidget {
   final int Function(int repeatCount)? holdStep;
 
   const FastAdjustButton({
+    super.key,
     required this.icon,
     required this.onStep,
     this.holdStep,

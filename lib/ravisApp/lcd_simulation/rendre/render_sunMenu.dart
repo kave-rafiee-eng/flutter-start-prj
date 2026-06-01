@@ -25,13 +25,13 @@ class RendererSubMenuData {
 }
 
 void _renderLcd(LcdFunctions lcd, RendererSubMenuData data) {
-  const MENU_VISIBLE_ITEMS = 3;
+  const menuVisibleItems = 3;
 
   if (data.menuIndex == data.submenu.length) {
     data.menuIndex = data.submenu.length - 1;
   }
 
-  if (data.menuIndex > (data.menuOffset + MENU_VISIBLE_ITEMS - 1)) {
+  if (data.menuIndex > (data.menuOffset + menuVisibleItems - 1)) {
     data.menuOffset++;
   }
   if (data.menuIndex < data.menuOffset) {
@@ -42,7 +42,7 @@ void _renderLcd(LcdFunctions lcd, RendererSubMenuData data) {
 
   lcd.drawLine(0, 13, X_PIXELS, 13, true);
 
-  for (int i = 0; i < MENU_VISIBLE_ITEMS && i < data.submenu.length; i++) {
+  for (int i = 0; i < menuVisibleItems && i < data.submenu.length; i++) {
     int y = i * 17 + 17;
 
     String text = data.submenu[data.menuOffset + i].label;
@@ -55,7 +55,7 @@ void _renderLcd(LcdFunctions lcd, RendererSubMenuData data) {
     }
   }
 
-  lcd.drawScrollBar(data.menuOffset, data.submenu.length, MENU_VISIBLE_ITEMS);
+  lcd.drawScrollBar(data.menuOffset, data.submenu.length, menuVisibleItems);
 }
 
 class RenderSubMenu extends StatefulWidget {

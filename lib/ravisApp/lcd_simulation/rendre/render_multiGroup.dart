@@ -107,7 +107,7 @@ void _renderGroupSetting(LcdFunctions lcd, RendererSettingMultiGroupData data) {
   if (data.refreshF) {
     data.refreshF = false;
     data.slowBlink++;
-    // print('slowBlink ${data.slowBlink}');
+    print('slowBlink ${data.slowBlink}');
   }
   bool blink = false;
   if (data.slowBlink > 3) data.slowBlink = 0;
@@ -296,8 +296,10 @@ class _RenderSettingMultiGroupState extends State<RenderSettingMultiGroup> {
   }
 
   void setValueActive(int newValue) {
-    var data = widget.inputData;
-    data.values[data.itemIndex + 1 + data.groupIndex * 12] = newValue;
+    setState(() {
+      var data = widget.inputData;
+      data.values[data.itemIndex + 1 + data.groupIndex * 12] = newValue;
+    });
   }
 
   void _swUp() {
@@ -306,7 +308,11 @@ class _RenderSettingMultiGroupState extends State<RenderSettingMultiGroup> {
 
     if (data.grupSelected) {
       if (!data.itemSelected) {
-        if (data.itemIndex > 0) data.itemIndex--;
+        if (data.itemIndex > 0) {
+          setState(() {
+            data.itemIndex--;
+          });
+        }
       } else {
         var activeItem = items[data.itemIndex];
         if (activeItem.settingOneSelect != null) {
@@ -351,7 +357,11 @@ class _RenderSettingMultiGroupState extends State<RenderSettingMultiGroup> {
 
     if (data.grupSelected) {
       if (!data.itemSelected) {
-        if (items.length > data.itemIndex - 1) data.itemIndex++;
+        if (items.length > data.itemIndex - 1) {
+          setState(() {
+            data.itemIndex++;
+          });
+        }
       } else {
         var activeItem = items[data.itemIndex];
 
@@ -399,7 +409,9 @@ class _RenderSettingMultiGroupState extends State<RenderSettingMultiGroup> {
     // var items = widget.inputData.getItem;
 
     if (data.grupSelected) {
-      data.itemSelected = !data.itemSelected;
+      setState(() {
+        data.itemSelected = !data.itemSelected;
+      });
     } else {
       setState(() {
         data.grupSelected = true;
@@ -413,9 +425,11 @@ class _RenderSettingMultiGroupState extends State<RenderSettingMultiGroup> {
 
     if (data.grupSelected) {
       if (data.itemSelected) {
-        data.itemSelected = false;
+        setState(() {
+          data.itemSelected = false;
+        });
       } else {
-        data.grupSelected = false;
+        data.onBack();
       }
     } else {
       data.onBack();
@@ -428,7 +442,7 @@ class _RenderSettingMultiGroupState extends State<RenderSettingMultiGroup> {
     final buffer = _lcdFunctions.getBuffer();
 
     LcdBuffer newBuf = buffer.copy();
-
+    print('_render');
     return ShowRendered(
       description: 'description',
       buffer: newBuf,

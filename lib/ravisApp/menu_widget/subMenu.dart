@@ -15,13 +15,13 @@ class Submenu extends StatelessWidget {
 
   List<ParanetIdLableType> findParents(List<MenuType> allMenus, MenuType menu) {
     List<ParanetIdLableType> Parents = [];
-    allMenus.forEach((m) {
-      m.parentId.forEach((parentId) {
+    for (var m in allMenus) {
+      for (var parentId in m.parentId) {
         if (parentId.id == menu.id) {
           Parents.add(ParanetIdLableType(id: m.id, label: parentId.label));
         }
-      });
-    });
+      }
+    }
     return Parents;
   }
 

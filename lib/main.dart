@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/meals/screens/tabs.dart';
-import 'package:flutter_application_1/ravisApp/loadData.dart';
 import 'package:flutter_application_1/ravisApp/screens/ravis_tabs.dart';
 // import 'package:flutter_application_1/quiz/Quiz.dart';
 import 'package:google_fonts/google_fonts.dart';

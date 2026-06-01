@@ -106,8 +106,8 @@ class LcdFunctions {
 
   void drawCircle(int x0, int y0, int r, bool color) {
     int f = 1 - r;
-    int ddF_x = 1;
-    int ddF_y = -2 * r;
+    int ddfX = 1;
+    int ddfY = -2 * r;
     int x = 0;
     int y = r;
 
@@ -119,12 +119,12 @@ class LcdFunctions {
     while (x < y) {
       if (f >= 0) {
         y--;
-        ddF_y += 2;
-        f += ddF_y;
+        ddfY += 2;
+        f += ddfY;
       }
       x++;
-      ddF_x += 2;
-      f += ddF_x;
+      ddfX += 2;
+      f += ddfX;
 
       drawPixel(x0 + x, y0 + y, color);
       drawPixel(x0 - x, y0 + y, color);
@@ -150,19 +150,19 @@ class LcdFunctions {
 
   void drawCircleHelper(int x0, int y0, int r, int cornername, bool color) {
     int f = 1 - r;
-    int ddF_x = 1;
-    int ddF_y = -2 * r;
+    int ddfX = 1;
+    int ddfY = -2 * r;
     int x = 0;
     int y = r;
     while (x < y) {
       if (f >= 0) {
         y--;
-        ddF_y += 2;
-        f += ddF_y;
+        ddfY += 2;
+        f += ddfY;
       }
       x++;
-      ddF_x += 2;
-      f += ddF_x;
+      ddfX += 2;
+      f += ddfX;
       if (cornername & 0x4 != 0) {
         drawPixel(x0 + x, y0 + y, color);
         drawPixel(x0 + y, y0 + x, color);
@@ -191,20 +191,20 @@ class LcdFunctions {
     bool color,
   ) {
     int f = 1 - r;
-    int ddF_x = 1;
-    int ddF_y = -2 * r;
+    int ddfX = 1;
+    int ddfY = -2 * r;
     int x = 0;
     int y = r;
 
     while (x < y) {
       if (f >= 0) {
         y--;
-        ddF_y += 2;
-        f += ddF_y;
+        ddfY += 2;
+        f += ddfY;
       }
       x++;
-      ddF_x += 2;
-      f += ddF_x;
+      ddfX += 2;
+      f += ddfX;
 
       if (cornername & 0x1 != 0) {
         drawFastVLine(x0 + x, y0 - y, 2 * y + 1 + delta, color);
@@ -223,8 +223,9 @@ class LcdFunctions {
   }
 
   void drawChar(int x, int y, bool color, int c, int size) {
-    if ((x >= X_PIXELS) || (y >= Y_PIXELS) || ((x + 4) < 0) || ((y + 7) < 0))
+    if ((x >= X_PIXELS) || (y >= Y_PIXELS) || ((x + 4) < 0) || ((y + 7) < 0)) {
       return;
+    }
 
     if (c < 128) c = c - 32;
     if (c >= 144 && c <= 175) c = c - 48;
@@ -386,17 +387,17 @@ void STE2007_drawChar12x15(int x, int y, char c, bool color) {
   }
 
   int sizeStr12x15(String str) {
-    int lcd_x = 0;
+    int lcdX = 0;
     List<int> listChar = str.codeUnits;
 
     for (int c in listChar) {
-      if (c == ' '.codeUnitAt(0))
-        lcd_x += font12x15[0];
-      else {
-        lcd_x += font12x15[(c - 32) * (FONT_WIDTH_12x15 * 2 + 1)] + 1;
+      if (c == ' '.codeUnitAt(0)) {
+        lcdX += font12x15[0];
+      } else {
+        lcdX += font12x15[(c - 32) * (FONT_WIDTH_12x15 * 2 + 1)] + 1;
       }
     }
-    return lcd_x;
+    return lcdX;
   }
 
   int sizeStr(String str) {
@@ -413,7 +414,7 @@ void STE2007_drawChar12x15(int x, int y, char c, bool color) {
     int y,
     bool color,
     int number,
-    int decimal_places,
+    int decimalPlaces,
   ) {
     List<int> buffer = [];
     int len = 0;
@@ -428,24 +429,24 @@ void STE2007_drawChar12x15(int x, int y, char c, bool color) {
       }
     }
 
-    while (len <= decimal_places) {
+    while (len <= decimalPlaces) {
       len++;
       buffer.add('0'.codeUnitAt(0));
     }
 
     int i = len - 1;
-    int start_x = x;
+    int startX = x;
     for (; i >= 0; i--) {
-      if (i == decimal_places - 1) {
-        drawPixel(start_x + 4, y + 14, color);
-        drawPixel(start_x + 5, y + 14, color);
-        drawPixel(start_x + 4, y + 15, color);
-        drawPixel(start_x + 5, y + 15, color);
-        start_x += 10;
+      if (i == decimalPlaces - 1) {
+        drawPixel(startX + 4, y + 14, color);
+        drawPixel(startX + 5, y + 14, color);
+        drawPixel(startX + 4, y + 15, color);
+        drawPixel(startX + 5, y + 15, color);
+        startX += 10;
       }
 
-      simb10x16(start_x, y, color, buffer[i] - '0'.codeUnitAt(0));
-      start_x += 12;
+      simb10x16(startX, y, color, buffer[i] - '0'.codeUnitAt(0));
+      startX += 12;
     }
   }
 
@@ -475,7 +476,7 @@ void STE2007_drawChar12x15(int x, int y, char c, bool color) {
     int textX = rightX + 5;
     int textY = y - 3;
 
-    lcdPrint(textX, textY, true, "${pos + 1}/${total}", 1);
+    lcdPrint(textX, textY, true, "${pos + 1}/$total", 1);
   }
 
   void fillRect(int x, int y, int w, int h, bool color) {
@@ -576,15 +577,15 @@ void STE2007_drawChar12x15(int x, int y, char c, bool color) {
   }
 
   void print12x15(int x, int y, String str, bool color) {
-    int lcd_x = x;
+    int lcdX = x;
     List<int> listChar = str.codeUnits;
 
     for (int c in listChar) {
-      if (c == ' '.codeUnitAt(0))
-        lcd_x += font12x15[0];
-      else {
-        drawChar12x15(lcd_x, y, c, color);
-        lcd_x += font12x15[(c - 32) * (FONT_WIDTH_12x15 * 2 + 1)] + 1;
+      if (c == ' '.codeUnitAt(0)) {
+        lcdX += font12x15[0];
+      } else {
+        drawChar12x15(lcdX, y, c, color);
+        lcdX += font12x15[(c - 32) * (FONT_WIDTH_12x15 * 2 + 1)] + 1;
       }
     }
   }
