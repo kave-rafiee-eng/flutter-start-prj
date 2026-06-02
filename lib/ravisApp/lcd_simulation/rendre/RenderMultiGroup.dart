@@ -3,7 +3,7 @@ import 'package:flutter_application_1/ravisApp/lcd_simulation/enum.dart';
 import 'package:flutter_application_1/ravisApp/lcd_simulation/lcdBuffer.dart';
 import 'package:flutter_application_1/ravisApp/lcd_simulation/lcd_functions.dart';
 import 'package:flutter_application_1/ravisApp/lcd_simulation/widgets/cardDescription.dart';
-import 'package:flutter_application_1/ravisApp/lcd_simulation/widgets/show_rendered.dart';
+import 'package:flutter_application_1/ravisApp/lcd_simulation/widgets/ShowRendered.dart';
 import 'package:flutter_application_1/ravisApp/lcd_simulation/widgets/textSelector.dart';
 import 'package:flutter_application_1/ravisApp/models/menu_model.dart';
 import 'dart:async';

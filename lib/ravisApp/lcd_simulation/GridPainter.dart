@@ -19,10 +19,10 @@ class BoolGridPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()..style = PaintingStyle.fill;
-    final borderPaint = Paint()
-      ..style = PaintingStyle.stroke
-      ..color = borderColor
-      ..strokeWidth = 0.1;
+    // final borderPaint = Paint()
+    //   ..style = PaintingStyle.stroke
+    //   ..color = borderColor
+    //   ..strokeWidth = 0.1;
 
     double lcdW = lcdbuffer.cols.toDouble() * cellSize;
     double lcdH = lcdbuffer.rows.toDouble() * cellSize;

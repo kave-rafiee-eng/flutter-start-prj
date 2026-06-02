@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/ravisApp/lcd_simulation/GridPainter.dart';
-import 'package:flutter_application_1/ravisApp/lcd_simulation/enum.dart';
+
 import 'package:flutter_application_1/ravisApp/lcd_simulation/lcdBuffer.dart';
-import 'package:flutter_application_1/ravisApp/lcd_simulation/widgets/cardDescription.dart';
+
 import 'package:flutter_application_1/ravisApp/lcd_simulation/widgets/fastAdjustButton.dart';
-import 'package:flutter_application_1/ravisApp/models/menu_model.dart';
 
 class ShowRendered extends StatelessWidget {
   // final LanguageEnum language;
