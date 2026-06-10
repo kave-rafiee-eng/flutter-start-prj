@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/errorCodes/models/errorCode_model.dart';
-import 'package:flutter_application_1/errorCodes/providers/meals_provider.dart';
 import 'package:flutter_application_1/errorCodes/screens.dart/selectBorad.dart';
 import 'package:flutter_application_1/errorCodes/service/errorCode_service.dart';
-import 'package:flutter_application_1/lcd_simulation/enums/Language_enums.dart';
+import 'package:flutter_application_1/widgets/LoadingView.dart';
 import 'dart:ui';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -46,7 +45,7 @@ class LoadDataErrorCode extends ConsumerWidget {
       future: _service.loadMenus(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return CircularProgressIndicator();
+          return LoadingView();
         } else if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
         }

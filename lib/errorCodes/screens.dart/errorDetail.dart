@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/errorCodes/models/errorCode_model.dart';
-import 'package:flutter_application_1/errorCodes/providers/meals_provider.dart';
+import 'package:flutter_application_1/providers/languageProvider.dart';
 import 'package:flutter_application_1/lcd_simulation/enums/Language_enums.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -23,12 +23,7 @@ class ErrorDetailPage extends ConsumerWidget {
     );
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          error.name.trim(),
-          textDirection: textDir,
-        ),
-      ),
+      appBar: AppBar(title: Text(error.name.trim(), textDirection: textDir)),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/errorCodes/models/errorCode_model.dart';
-import 'package:flutter_application_1/errorCodes/providers/meals_provider.dart';
+import 'package:flutter_application_1/providers/languageProvider.dart';
 import 'package:flutter_application_1/errorCodes/screens.dart/errorDetail.dart';
 import 'package:flutter_application_1/errorCodes/screens.dart/listErrors.dart';
 import 'package:flutter_application_1/lcd_simulation/enums/Language_enums.dart';
+import 'package:flutter_application_1/selectLanguage.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SelectboradForErrorCode extends ConsumerWidget {
@@ -41,31 +42,7 @@ class SelectboradForErrorCode extends ConsumerWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12),
             child: Center(
-              child: DropdownButtonHideUnderline(
-                child: DropdownButton<String>(
-                  value: language.name,
-                  borderRadius: BorderRadius.circular(12),
-                  icon: const Icon(Icons.language),
-                  dropdownColor: theme.colorScheme.surface,
-                  style: theme.textTheme.titleMedium?.copyWith(
-                    color: theme.colorScheme.onSurface,
-                  ),
-                  onChanged: (value) {
-                    if (value == null) return;
-                    ref
-                        .read(languageNotifierProvider.notifier)
-                        .changeLanguage(LanguageEnum.values.byName(value));
-                  },
-                  items: langs.entries
-                      .map(
-                        (e) => DropdownMenuItem<String>(
-                          value: e.key.name,
-                          child: Text(e.value),
-                        ),
-                      )
-                      .toList(),
-                ),
-              ),
+              child: DropdownButtonHideUnderline(child: Selectlanguage()),
             ),
           ),
         ],
