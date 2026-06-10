@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/ravisApp/lcd_simulation/lcdBuffer.dart';
+import 'package:flutter_application_1/lcd_simulation/lcdBuffer.dart';
 
 class BoolGridPainter extends CustomPainter {
   final LcdBuffer lcdbuffer;

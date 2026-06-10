@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 // import 'package:flutter_application_1/ravisApp/PdfViwer.dart';
-import 'package:flutter_application_1/ravisApp/lcd_simulation/enum.dart';
-import 'package:flutter_application_1/ravisApp/lcd_simulation/rendre/RenderHome.dart';
-import 'package:flutter_application_1/ravisApp/models/menu_model.dart';
-import 'package:flutter_application_1/ravisApp/service/menu_service.dart';
-import 'package:flutter_application_1/ravisApp/widgets/home_drawer.dart';
+import 'package:flutter_application_1/lcd_simulation/enums/Language_enums.dart';
+import 'package:flutter_application_1/lcd_simulation/Renderes/Rendermanager.dart';
+import 'package:flutter_application_1/lcd_simulation/models/menu_model.dart';
+import 'package:flutter_application_1/lcd_simulation/service/menu_service.dart';
+// import 'package:flutter_application_1/ravisApp/widgets/home_drawer.dart';
 import 'dart:ui';
 
 void main() => runApp(const MyApp());
@@ -102,7 +102,7 @@ class _DemoPageState extends State<DemoPage> {
           BottomNavigationBarItem(icon: Icon(Icons.chat), label: 'Chat Ai'),
         ],
       ),
-      drawer: HomeDrawer(),
+      // drawer: HomeDrawer(),
       appBar: AppBar(
         title: const Text('BoolGridPainter Demo'),
         actions: [

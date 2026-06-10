@@ -6,8 +6,8 @@
 #define H                   66
 */
 
-import 'package:flutter_application_1/ravisApp/lcd_simulation/lcdBuffer.dart';
-import 'package:flutter_application_1/ravisApp/lcd_simulation/font.dart';
+import 'package:flutter_application_1/lcd_simulation/lcdBuffer.dart';
+import 'package:flutter_application_1/lcd_simulation/const_data/font.dart';
 
 const int X_PIXELS = 96;
 const int Y_PIXELS = 68;

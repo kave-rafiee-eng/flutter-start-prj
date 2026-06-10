@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/ravisApp/lcd_simulation/enum.dart';
-import 'package:flutter_application_1/ravisApp/models/menu_model.dart';
+import 'package:flutter_application_1/lcd_simulation/enums/Language_enums.dart';
+import 'package:flutter_application_1/lcd_simulation/models/menu_model.dart';
 
 TextDirection claculateTextDir(LanguageEnum language) {
   if (language == LanguageEnum.persian || language == LanguageEnum.arabic) {

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/ravisApp/lcd_simulation/enum.dart';
-import 'package:flutter_application_1/ravisApp/lcd_simulation/rendre/RenderMultiGroup.dart';
-import 'package:flutter_application_1/ravisApp/lcd_simulation/rendre/RenderMultiSelect.dart';
-import 'package:flutter_application_1/ravisApp/lcd_simulation/rendre/RenderSetOneSelect.dart';
-import 'package:flutter_application_1/ravisApp/lcd_simulation/rendre/RenderSetOneParameter.dart';
-import 'package:flutter_application_1/ravisApp/lcd_simulation/rendre/RenderSubMenu.dart';
-import 'package:flutter_application_1/ravisApp/models/menu_model.dart';
+import 'package:flutter_application_1/lcd_simulation/enums/Language_enums.dart';
+import 'package:flutter_application_1/lcd_simulation/Renderes/RenderMultiGroup.dart';
+import 'package:flutter_application_1/lcd_simulation/Renderes/RenderMultiSelect.dart';
+import 'package:flutter_application_1/lcd_simulation/Renderes/RenderSetOneSelect.dart';
+import 'package:flutter_application_1/lcd_simulation/Renderes/RenderSetOneParameter.dart';
+import 'package:flutter_application_1/lcd_simulation/Renderes/RenderSubMenu.dart';
+import 'package:flutter_application_1/lcd_simulation/models/menu_model.dart';
 
 class Rendermanager extends StatefulWidget {
   const Rendermanager({super.key, required this.menus, required this.language});
