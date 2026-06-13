@@ -1,12 +1,20 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:path_provider/path_provider.dart';
 import '../models/menu_model.dart';
 
 class MenuService {
   Future<List<MenuType>> loadMenus() async {
-    final jsonString = await rootBundle.loadString(
-      'assets/data/menu_json.json',
-    );
+    String jsonString;
+
+    final directory = await getApplicationDocumentsDirectory();
+    final file = File('${directory.path}/menu_json.json');
+    if (await file.exists()) {
+      jsonString = await file.readAsString();
+    } else {
+      jsonString = await rootBundle.loadString('assets/data/menu_json.json');
+    }
 
     final dynamic jsonData = jsonDecode(jsonString);
 

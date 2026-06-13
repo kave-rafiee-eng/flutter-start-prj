@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/documents/mainDocuments.dart';
-import 'package:flutter_application_1/errorCodes/mainError.dart';
 import 'package:flutter_application_1/lcd_simulation/enums/Language_enums.dart';
 import 'package:flutter_application_1/lcd_simulation/mainLcd.dart';
 import 'package:flutter_application_1/providers/languageProvider.dart';
@@ -33,36 +31,6 @@ class HomeDrawer extends ConsumerWidget {
               ),
               textDirection: textDir,
             ),
-          ),
-          _DrawerMenuItem(
-            icon: Icons.error_outline_rounded,
-            iconColor: theme.colorScheme.error,
-            titleFa: 'کدهای خطا',
-            titleEn: 'Error Codes',
-            subtitleFa: 'مشاهده و عیب‌یابی خطاها',
-            subtitleEn: 'Browse and diagnose faults',
-            language: language,
-            onTap: () => _navigateTo(context, LoadDataErrorCode()),
-          ),
-          _DrawerMenuItem(
-            icon: Icons.tune_rounded,
-            iconColor: theme.colorScheme.primary,
-            titleFa: 'منوی Advance',
-            titleEn: 'Advance Menu',
-            subtitleFa: 'تنظیمات و پارامترهای LCD',
-            subtitleEn: 'LCD settings and parameters',
-            language: language,
-            onTap: () => _navigateTo(context, LoadDataMenu()),
-          ),
-          _DrawerMenuItem(
-            icon: Icons.tune_rounded,
-            iconColor: theme.colorScheme.primary,
-            titleFa: 'فایل ها',
-            titleEn: 'Documents',
-            subtitleFa: 'اموزش ها و محصولات',
-            subtitleEn: 'product manual ...',
-            language: language,
-            onTap: () => _navigateTo(context, LoadDataGroupDocs()),
           ),
           const Spacer(),
           const Divider(height: 1),

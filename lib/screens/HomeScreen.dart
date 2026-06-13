@@ -1,14 +1,44 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/documents/mainDocuments.dart';
-import 'package:flutter_application_1/errorCodes/mainError.dart';
+import 'package:flutter_application_1/documents/models/groupDoc_model.dart';
+import 'package:flutter_application_1/documents/screen/selectGroup.dart';
+import 'package:flutter_application_1/errorCodes/models/errorCode_model.dart';
+import 'package:flutter_application_1/errorCodes/screens/selectBorad.dart';
 import 'package:flutter_application_1/lcd_simulation/enums/Language_enums.dart';
 import 'package:flutter_application_1/lcd_simulation/mainLcd.dart';
-import 'package:flutter_application_1/phonebook/mainPhonebook.dart';
+import 'package:flutter_application_1/lcd_simulation/models/menu_model.dart';
+import 'package:flutter_application_1/phonebook/model/phonebook_model.dart';
+import 'package:flutter_application_1/phonebook/screen/phoneBookList.dart';
 import 'package:flutter_application_1/providers/languageProvider.dart';
+import 'package:flutter_application_1/service/LoadDataWidget.dart';
+import 'package:flutter_application_1/service/jsonLoader.dart';
 import 'package:flutter_application_1/utils/ravis_localization.dart';
 import 'package:flutter_application_1/widgets/ravis_list_card.dart';
 import 'package:flutter_application_1/widgets/ravis_page_header.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+final _errorCodesLoader = JsonLoader<ErrorCodeType>(
+  fileName: 'errorCodes.json',
+  assetPath: 'assets/data/errorCodes.json',
+  fromJson: ErrorCodeType.fromJson,
+);
+
+final _menuLoader = JsonLoader<MenuType>(
+  fileName: 'menu_json.json',
+  assetPath: 'assets/data/menu_json.json',
+  fromJson: MenuType.fromJson,
+);
+
+final _documentsLoader = JsonLoader<GroupDocType>(
+  fileName: 'documents.json',
+  assetPath: 'assets/data/documents.json',
+  fromJson: GroupDocType.fromJson,
+);
+
+final _phonebookLoader = JsonLoader<PhonebookType>(
+  fileName: 'phonebook.json',
+  assetPath: 'assets/data/phonebook.json',
+  fromJson: PhonebookType.fromJson,
+);
 
 class Homescreen extends ConsumerWidget {
   const Homescreen({super.key});
@@ -56,7 +86,12 @@ class Homescreen extends ConsumerWidget {
               theme.colorScheme.error.withValues(alpha: 0.7),
             ],
             textDirection: textDir,
-            onTap: () => _navigateTo(context, LoadDataErrorCode()),
+            onTap: () => _openModule(
+              context,
+              loader: _errorCodesLoader.loadData,
+              builder: (data) =>
+                  SelectboradForErrorCode(listErrorCode: data),
+            ),
           ),
           const SizedBox(height: 14),
           RavisListCard(
@@ -72,7 +107,11 @@ class Homescreen extends ConsumerWidget {
               theme.colorScheme.primary.withValues(alpha: 0.7),
             ],
             textDirection: textDir,
-            onTap: () => _navigateTo(context, LoadDataMenu()),
+            onTap: () => _openModule(
+              context,
+              loader: _menuLoader.loadData,
+              builder: (data) => MenusScreen(menus: data),
+            ),
           ),
           const SizedBox(height: 14),
           RavisListCard(
@@ -88,19 +127,31 @@ class Homescreen extends ConsumerWidget {
               theme.colorScheme.tertiary.withValues(alpha: 0.7),
             ],
             textDirection: textDir,
-            onTap: () => _navigateTo(context, LoadDataGroupDocs()),
+            onTap: () => _openModule(
+              context,
+              loader: _documentsLoader.loadData,
+              builder: (data) => Selectgroup(listGroupDoc: data),
+            ),
           ),
           const SizedBox(height: 14),
           RavisListCard(
-            title: bilingualText('بشتیبانی', 'support', language),
-            subtitle: bilingualText('', '', language),
-            icon: Icons.folder_copy_rounded,
+            title: bilingualText('پشتیبانی', 'Support', language),
+            subtitle: bilingualText(
+              'شماره‌های تماس',
+              'Contact numbers',
+              language,
+            ),
+            icon: Icons.support_agent_rounded,
             gradientColors: [
-              theme.colorScheme.tertiary,
-              theme.colorScheme.tertiary.withValues(alpha: 0.7),
+              theme.colorScheme.secondary,
+              theme.colorScheme.secondary.withValues(alpha: 0.7),
             ],
             textDirection: textDir,
-            onTap: () => _navigateTo(context, LoadDataPhonebook()),
+            onTap: () => _openModule(
+              context,
+              loader: _phonebookLoader.loadData,
+              builder: (data) => Phonebooklist(listPhoneBook: data),
+            ),
           ),
           const SizedBox(height: 28),
           _HomeFooter(language: language, textDir: textDir),
@@ -109,8 +160,20 @@ class Homescreen extends ConsumerWidget {
     );
   }
 
-  void _navigateTo(BuildContext context, Widget page) {
-    Navigator.push(context, MaterialPageRoute(builder: (_) => page));
+  void _openModule<T>(
+    BuildContext context, {
+    required Future<List<T>> Function() loader,
+    required Widget Function(List<T> data) builder,
+  }) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => LoadDataWidget<T>(
+          loader: loader,
+          builder: builder,
+        ),
+      ),
+    );
   }
 }
 
